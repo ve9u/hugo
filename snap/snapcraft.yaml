@@ -67,7 +67,10 @@ parts:
 
   node:
     plugin: x-nodejs
-    node-packages: [postcss-cli, @babel/cli]
+    node-packages:
+        - "@babel/cli"
+        - "@babel/core"
+        - postcss-cli
     filesets:
       node:
         - bin/node
