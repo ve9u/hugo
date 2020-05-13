@@ -78,7 +78,7 @@ parts:
         - bin/postcss
         - lib/node_modules/postcss-cli/*
       babel:
-        - bin/babel.js
+        - bin/babel
         - lib/node_modules/@babel/cli/*
     prime:
       - $node
