@@ -19,6 +19,7 @@ import (
 	"html/template"
 	"math"
 	"reflect"
+	"strings"
 
 	"github.com/gohugoio/hugo/config"
 
@@ -402,8 +403,8 @@ func newPaginationURLFactory(d TargetPathDescriptor) paginationURLFactory {
 		tmp := CreateTargetPaths(pathDescriptor).RelPermalink(d.PathSpec)
 
 		if len(paginateExt) != 0 && pageNumber > 1 {
-			//tmp = strings.TrimSuffix(tmp, "/")
-			fmt.Println(tmp)
+			tmp = strings.TrimSuffix(tmp, "/")
+			//fmt.Println(tmp)
 		}
 
 		return tmp
