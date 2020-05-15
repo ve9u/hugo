@@ -392,13 +392,20 @@ func newPaginationURLFactory(d TargetPathDescriptor) paginationURLFactory {
 
 	return func(pageNumber int) string {
 		pathDescriptor := d
+		paginateExt := d.PathSpec.Cfg.GetString("paginateExt")
 		var rel string
 		if pageNumber > 1 {
-			rel = fmt.Sprintf("/%s/%d/", d.PathSpec.PaginatePath, pageNumber)
+			rel = fmt.Sprintf("/%s/%d/%s", d.PathSpec.PaginatePath, pageNumber, paginateExt)
 			pathDescriptor.Addends = rel
 		}
 
-		return CreateTargetPaths(pathDescriptor).RelPermalink(d.PathSpec)
+		tmp := CreateTargetPaths(pathDescriptor).RelPermalink(d.PathSpec)
 
+		if len(paginateExt) != 0 && pageNumber > 1 {
+			//tmp = strings.TrimSuffix(tmp, "/")
+			fmt.Println(tmp)
+		}
+
+		return tmp
 	}
 }
